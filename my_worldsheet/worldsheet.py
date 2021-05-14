@@ -3,6 +3,10 @@
 Based on [Hu et al. 2021].
 """
 
+grid_mesh_size = [33, 33]
+# grid_mesh_size = [65, 65]
+input_image_size = [256, 256]
+
 # 1. Generate a Worldsheet for a given view
 
 # 1.1. Build the scene mesh by warping a grid sheet via grid offset and depth
@@ -30,3 +34,29 @@ Based on [Hu et al. 2021].
 # 2. Render a novel view by moving the camera with a differentiable mesh renderer
 
 # 3. Apply inpainting network
+
+# Losses
+
+
+def loss():
+
+    lambda1 = 8
+    lambda2 = 2
+    lambda3 = 8
+    lambda4 = 2
+    lambda5 = 0.2
+    lambda6 = 0.001
+
+    L_out_rgb = None
+    L_out_pc = None
+    L_paint_rgb = None
+    L_paint_pc = None
+    L_g = None
+    L_m = None
+
+    return (lambda1 * L_out_rgb
+            + lambda2 * L_out_pc
+            + lambda3 * L_paint_rgb
+            + lambda4 * L_paint_pc
+            + lambda5 * L_g
+            + lambda6 * L_m)
